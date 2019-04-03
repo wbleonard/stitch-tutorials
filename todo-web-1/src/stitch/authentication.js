@@ -5,7 +5,7 @@ import {app}  from "./stitch.js";
 // Log in a user with the specified email and password
 // Note: The user must already be registered with the Stitch app.
 // See https://docs.mongodb.com/stitch/authentication/userpass/#create-a-new-user-account
-export function loginEmailPasswordUser({ email, password }) {
+export function loginEmailPasswordUser( email, password ) {
   return app.auth
     .loginWithCredential(new UserPasswordCredential(email, password))
     .then(stitchUser => {

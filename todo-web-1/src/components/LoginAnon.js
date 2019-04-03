@@ -13,7 +13,7 @@ import {
 } from "reactstrap";
 import Banner from "./Banner";
 import PropTypes from 'prop-types';
-
+import Login from "./Login";
 
 const LoginLayout = styled.div`
 display: grid;
@@ -38,6 +38,7 @@ const LoginContent = styled.div`
   grid-area: content;
   position: absolute;
   top: 150px;
+  left: 190px;
 
 `;
 
@@ -47,6 +48,8 @@ export default function LoginAnon(props) {
       <LoginLayout>
         <Banner />
         <LoginContent>
+          <Login/>
+          or
           <LoginForm {...props} />
         </LoginContent>
       </LoginLayout>
