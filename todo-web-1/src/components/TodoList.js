@@ -32,7 +32,7 @@ componentDidMount() {
 }
 
 addItem(event) {
-   if (event.keyCode != 13) {
+   if (event.keyCode !== 13) {
       return;
    }
    this.setState({ requestPending: true });
@@ -78,7 +78,7 @@ render() {
             : null}
       </div>
       <ul className="items-list">
-         {this.state.items.length == 0
+         {this.state.items.length === 0
             ? <div className="list-empty-label">empty list.</div>
             : this.state.items.map(item => {
                return (

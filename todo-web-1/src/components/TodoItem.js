@@ -1,5 +1,5 @@
 import React from "react";
-import {app, items} from "./../stitch";
+import {items} from "./../stitch";
 import PropTypes from 'prop-types';
 
 var TodoItem = class extends React.Component {

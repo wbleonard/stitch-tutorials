@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "@emotion/styled";
 import ErrorBoundary from "react-error-boundary";
 import {
@@ -6,14 +6,12 @@ import {
   CardBody,
   Button,
   Form,
-  FormGroup,
-  Label,
-  Input,
-  FormText,
 } from "reactstrap";
 import Banner from "./Banner";
 import PropTypes from 'prop-types';
 import Login from "./Login";
+//import FacebookUserLogin from "./FacebookUserLogin";
+import LoginFacebook from "./LoginFacebook";
 
 const LoginLayout = styled.div`
 display: grid;
@@ -49,6 +47,8 @@ export default function LoginAnon(props) {
         <Banner />
         <LoginContent>
           <Login/>
+          or
+          <LoginFacebook/>
           or
           <LoginForm {...props} />
         </LoginContent>

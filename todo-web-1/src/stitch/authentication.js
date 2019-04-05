@@ -1,11 +1,34 @@
-import { useState, useEffect } from "react";
-import { UserPasswordCredential, AnonymousCredential } from "mongodb-stitch-browser-sdk";
-import {app}  from "./stitch.js";
+import {
+  UserPasswordCredential,
+  AnonymousCredential,
+  FacebookRedirectCredential
+} from "mongodb-stitch-browser-sdk";
+import { app } from "./stitch.js";
+
+export async function loginFacebookUser() {
+  if (!app.auth.isLoggedIn) {
+    console.log("Need to log in");
+    const credential = new FacebookRedirectCredential();
+    await app.auth.loginWithRedirect(credential)  // returns void
+/*    if (app.auth.hasRedirectResult()) {
+      console.log("hasRedirectResult, user");
+      app.auth.handleRedirectResult().then(user => {
+        console.log(user);
+      });
+    } else {
+      console.log("Failed to get a redirect result from Facebook")
+    }*/
+    console.log("test");
+    console.log("Logged in as: " + app.auth.user.id); // This error allows the login to work!
+  } else {
+    console.log("Already logged in");
+  }
+}
 
 // Log in a user with the specified email and password
 // Note: The user must already be registered with the Stitch app.
 // See https://docs.mongodb.com/stitch/authentication/userpass/#create-a-new-user-account
-export function loginEmailPasswordUser( email, password ) {
+export function loginEmailPasswordUser(email, password) {
   return app.auth
     .loginWithCredential(new UserPasswordCredential(email, password))
     .then(stitchUser => {
@@ -14,7 +37,7 @@ export function loginEmailPasswordUser( email, password ) {
     });
 }
 
-// Log in a user anonymously. 
+// Log in a user anonymously.
 // Note: When the user logs out, all data is lost.
 // See https://docs.mongodb.com/stitch/authentication/anonymous/
 export function loginAnonymous() {
@@ -42,6 +65,5 @@ export function logoutUser(stitchUser) {
 }
 
 export function isLoggedIn() {
-   return app.auth.isLoggedIn;
+  return app.auth.isLoggedIn;
 }
-
