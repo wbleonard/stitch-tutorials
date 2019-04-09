@@ -1,29 +1,8 @@
 import {
   UserPasswordCredential,
   AnonymousCredential,
-  FacebookRedirectCredential
 } from "mongodb-stitch-browser-sdk";
 import { app } from "./stitch.js";
-
-export async function loginFacebookUser() {
-  if (!app.auth.isLoggedIn) {
-    console.log("Need to log in");
-    const credential = new FacebookRedirectCredential();
-    await app.auth.loginWithRedirect(credential)  // returns void
-/*    if (app.auth.hasRedirectResult()) {
-      console.log("hasRedirectResult, user");
-      app.auth.handleRedirectResult().then(user => {
-        console.log(user);
-      });
-    } else {
-      console.log("Failed to get a redirect result from Facebook")
-    }*/
-    console.log("test");
-    console.log("Logged in as: " + app.auth.user.id); // This error allows the login to work!
-  } else {
-    console.log("Already logged in");
-  }
-}
 
 // Log in a user with the specified email and password
 // Note: The user must already be registered with the Stitch app.

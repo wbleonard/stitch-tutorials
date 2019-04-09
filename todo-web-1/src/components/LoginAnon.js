@@ -10,7 +10,6 @@ import {
 import Banner from "./Banner";
 import PropTypes from 'prop-types';
 import Login from "./Login";
-//import FacebookUserLogin from "./FacebookUserLogin";
 import LoginFacebook from "./LoginFacebook";
 
 const LoginLayout = styled.div`
