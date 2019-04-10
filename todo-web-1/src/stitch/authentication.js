@@ -1,8 +1,8 @@
 import {
   UserPasswordCredential,
-  AnonymousCredential,
+  AnonymousCredential
 } from "mongodb-stitch-browser-sdk";
-import { app } from "./stitch.js";
+import { app, emailPassClient } from "./stitch.js";
 
 // Log in a user with the specified email and password
 // Note: The user must already be registered with the Stitch app.
@@ -13,6 +13,16 @@ export function loginEmailPasswordUser(email, password) {
     .then(stitchUser => {
       console.log(`Logged in as: ${email}`);
       return stitchUser;
+    });
+}
+
+// Register a user with the specified email and password
+export function registerUser(email, password) {
+
+  return emailPassClient
+    .registerWithEmail(email, password)
+    .then(() => {
+      console.log("Successfully sent account confirmation email");
     });
 }
 

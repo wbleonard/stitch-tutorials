@@ -9,7 +9,8 @@ import {
 } from "reactstrap";
 import Banner from "./Banner";
 import PropTypes from 'prop-types';
-import Login from "./Login";
+import RegisterUser from "./RegisterUser";
+import Login from "./LoginUser";
 import LoginFacebook from "./LoginFacebook";
 
 const LoginLayout = styled.div`
@@ -45,6 +46,8 @@ export default function LoginAnon(props) {
       <LoginLayout>
         <Banner />
         <LoginContent>
+          <RegisterUser/>
+          or
           <Login/>
           or
           <LoginFacebook/>

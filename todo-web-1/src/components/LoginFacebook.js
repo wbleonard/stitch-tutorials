@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Button } from "react-bootstrap";
-import { loginFacebookUser } from "../stitch/authentication";
 import { app } from "./../stitch/stitch";
 import { FacebookRedirectCredential } from "mongodb-stitch-browser-sdk";
 export default class Login extends Component {
@@ -26,7 +25,7 @@ export default class Login extends Component {
       <div className="LoginFacebook">
         <form onSubmit={this.handleSubmit}>
           <Button block type="submit">
-            Login Using Facebook
+            Log in Using Facebook
           </Button>
         </form>
       </div>
