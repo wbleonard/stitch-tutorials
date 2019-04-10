@@ -8,7 +8,7 @@ var TodoItem = class extends React.Component {
       items
          .updateOne(
          { _id: this.props.item._id },
-         { $set: { checked: !this.props.item.checked } }
+         { $set: { checked: !this.props.item.checked }, $inc: { "__stitch_sync_version.v": 1 } }
          )
          .then(() => this.props.onChange());
    }
