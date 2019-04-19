@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import {
-  Badge,
   Button,
   FormGroup,
   FormControl,
@@ -8,7 +7,7 @@ import {
 } from "react-bootstrap";
 import { Card, CardBody } from "reactstrap";
 import styled from "@emotion/styled";
-import { registerUser } from "../stitch/authentication";
+import { registerUser, resendConfirmationEmail } from "../stitch/authentication";
 
 const LoginCard = styled(Card)`
   background-color: #383a3f !important;
@@ -16,9 +15,12 @@ const LoginCard = styled(Card)`
   background-color: #1f2124 !important;
   background-color: #011627 !important;
 `;
+
 export default class RegisterUser extends Component {
   constructor(props) {
     super(props);
+
+    this.handleResendEmail = this.handleResendEmail.bind(this);
 
     this.state = {
       email: "",
@@ -31,6 +33,10 @@ export default class RegisterUser extends Component {
     return this.state.email.length > 0 && this.state.password.length > 0;
   }
 
+  validateEmail() {
+    return this.state.email.length > 0;
+  }
+
   handleChange = event => {
     this.setState({
       [event.target.id]: event.target.value
@@ -40,15 +46,27 @@ export default class RegisterUser extends Component {
   handleSubmit = event => {
     event.preventDefault();
     console.log(this.state.email);
+
     registerUser(this.state.email, this.state.password)
       .then(() => {
-        //window.location.reload();
+        this.setState({message:"Successfully sent account confirmation email"});
       })
       .catch(err => {
-        console.log("Error registering new user:", err);
-        this.state.message=err;
+        console.log("Error registering new user:", err.message);
+        this.setState({message:err.message});
       });
   };
+
+  handleResendEmail() {
+    resendConfirmationEmail(this.state.email)
+    .then(() => {
+      this.setState({message:"Successfully resent account confirmation email"});
+    })
+    .catch(err => {
+      console.log("Error resending account confirmation email:", err.message);
+      this.setState({message:err.message});
+    });
+}  
 
   render() {
     return (
@@ -75,6 +93,9 @@ export default class RegisterUser extends Component {
               </FormGroup>
               <Button block disabled={!this.validateForm()} type="submit">
                 Register User
+              </Button>
+              <Button block disabled={!this.validateEmail()} onClick={this.handleResendEmail} >
+                Resend Confirmation
               </Button>
               <div>
                 <br />

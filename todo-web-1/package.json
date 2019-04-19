@@ -23,6 +23,7 @@
     "react-error-boundary": "1.2.3",
     "react-facebook-login": "^4.1.1",
     "react-leaflet": "2.2.1",
+    "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
     "reactstrap": "7.1.0"
   },

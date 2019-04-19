@@ -18,12 +18,20 @@ export function loginEmailPasswordUser(email, password) {
 
 // Register a user with the specified email and password
 export function registerUser(email, password) {
+  return emailPassClient.registerWithEmail(email, password).then(() => {
+    console.log("Successfully sent account confirmation email");
+  });
+}
 
-  return emailPassClient
-    .registerWithEmail(email, password)
-    .then(() => {
-      console.log("Successfully sent account confirmation email");
-    });
+// Confirm the user's email/password account
+export default function confirmUser(token, tokenId) {  
+  return emailPassClient.confirmUser(token, tokenId);
+}
+
+export function resendConfirmationEmail(email) {
+  return emailPassClient.resendConfirmationEmail(email).then(() => {
+    console.log("Successfully sent confirmation email");
+  })
 }
 
 // Log in a user anonymously.
